@@ -1,12 +1,14 @@
-Common library for Hamok
+Base library for Hamok
 ---
-This repository is a monorepo for common library written for different 
-language bindings for hamok.
+This repository contains the 
+communication schema for hamok messages, together with a description 
+of message interpretations.
 
 
 Table of Contents:
 
--   [Schema](#schema)
+-   [Prototypes](#prototypes)
+-   [Generate Schema](#generate-schema)
 -   [Hamok Messages](#hamok-messages)
     - [Hello Notification](#hello-notification)
     - [Endpoint State Notification](#endpoint-state-notification)
@@ -22,14 +24,13 @@ Table of Contents:
 -   [License](#license)
 
 
-## Schema
+## Prototypes
 
-Hamok uses protobuf prototypes for messaging. 
-To generate a schema for hamok you can do:
+Hamok uses protobuf prototypes for messaging.
 
+## Generate Schema
 
 ```javascript
-cd schema
 npm i
 node index.js
 ```
