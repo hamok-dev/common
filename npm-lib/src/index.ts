@@ -1,5 +1,8 @@
-export { Message, Message_MessageType as MessageType } from "./Models";
-export { Codec } from "./codecs/Codec";
+export { Message, 
+    Message_MessageType as MessageType, 
+    Message_MessageProtocol as MessageProtocol,
+} from "./Models";
+export { Codec, createCodec } from "./codecs/Codec";
 export { FacadedCodec } from "./codecs/FacadedCodec";
 export { createLogger, setLogLevel } from "./logger";
 export * as Collections from "./Collections";
@@ -8,7 +11,9 @@ export { MessageProcessor } from "./MessageProcessor";
 export { MessageDefaultProcessor } from "./MessageDefaultProcessor";
 
 export { StorageCodec } from "./StorageCodec";
+export { RaccoonCodec } from "./RaccoonCodec";
 export { GridCodec } from "./GridCodec";
+export { PubSubCodec } from "./PubSubCodec";
 
 export { 
     HelloNotification, 
@@ -46,6 +51,15 @@ export {
 } from "./messagetypes/UpdateEntries";
 
 export { 
+    OngoingRequestsNotification 
+} from "./messagetypes/OngoingRequestsNotification";
+
+export {
+    GetSubscriptionsRequest,
+    GetSubscriptionsResponse
+} from "./messagetypes/GetSubscriptions";
+
+export { 
     ClearEntriesNotification, 
     ClearEntriesRequest, 
     ClearEntriesResponse 
@@ -60,6 +74,12 @@ export {
     GetKeysRequest, 
     GetKeysResponse 
 } from "./messagetypes/GetKeys";
+
+
+export { 
+    GetSizeRequest, 
+    GetSizeResponse 
+} from "./messagetypes/GetSize";
 
 export { 
     DeleteEntriesNotification, 
@@ -90,5 +110,18 @@ export {
     PublishCustomDataRequest, 
     PublishCustomDataResponse 
 } from "./messagetypes/PublishCustomData";
+
+export { 
+    AddSubscriptionRequest, 
+    AddSubscriptionResponse, 
+    AddSubscriptionNotification 
+} from "./messagetypes/AddSubscription";
+
+
+export { 
+    RemoveSubscriptionRequest, 
+    RemoveSubscriptionResponse, 
+    RemoveSubscriptionNotification 
+} from "./messagetypes/RemoveSubscription";
 
 

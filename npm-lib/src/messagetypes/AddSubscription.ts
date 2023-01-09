@@ -1,53 +1,51 @@
-export class UpdateEntriesRequest<K, V> {
+export class AddSubscriptionRequest {
     public readonly requestId: string;
-    public readonly entries: ReadonlyMap<K, V>;
+    public readonly event: string;
     public readonly sourceEndpointId?: string;
     public constructor(
         requetId: string,
-        entries: ReadonlyMap<K, V>,
+        event: string,
         sourceEndpointId?: string
     ) {
         this.requestId = requetId;
-        this.entries = entries;
+        this.event = event;
         this.sourceEndpointId = sourceEndpointId;
     }
 
-    public createResponse(
-        updatedEntries: ReadonlyMap<K, V>
-    ): UpdateEntriesResponse<K, V> {
-        return new UpdateEntriesResponse<K, V>(
+    public createResponse(success: boolean): AddSubscriptionResponse {
+        return new AddSubscriptionResponse(
             this.requestId,
-            updatedEntries,
-            this.sourceEndpointId
+            success,
+            this.sourceEndpointId!
         );
     }
 }
 
-export class UpdateEntriesResponse<K, V> {
+export class AddSubscriptionResponse {
     public readonly requestId: string;
-    public readonly updatedEntries: ReadonlyMap<K, V>;
+    public readonly success: boolean;
     public readonly destinationEndpointId?: string;
     public constructor(
         requetId: string,
-        updatedEntries: ReadonlyMap<K, V>,
+        success: boolean,
         destinationEndpointId?: string
     ) {
         this.requestId = requetId;
-        this.updatedEntries = updatedEntries;
+        this.success = success;
         this.destinationEndpointId = destinationEndpointId;
     }
 }
 
-export class UpdateEntriesNotification<K, V> {
-    public readonly updatedEntries: ReadonlyMap<K, V>;
+export class AddSubscriptionNotification {
+    public readonly event: string;
     public readonly sourceEndpointId?: string;
     public readonly destinationEndpointId?: string;
     public constructor(
-        updatedEntries: ReadonlyMap<K, V>,
+        event: string,
         sourceEndpointId?: string,
         destinationEndpointId?: string
     ) {
-        this.updatedEntries = updatedEntries;
+        this.event = event;
         this.sourceEndpointId = sourceEndpointId;
         this.destinationEndpointId = destinationEndpointId;
     }

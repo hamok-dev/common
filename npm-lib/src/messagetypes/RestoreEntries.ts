@@ -1,4 +1,4 @@
-export class UpdateEntriesRequest<K, V> {
+export class RestoreEntriesRequest<K, V> {
     public readonly requestId: string;
     public readonly entries: ReadonlyMap<K, V>;
     public readonly sourceEndpointId?: string;
@@ -8,46 +8,40 @@ export class UpdateEntriesRequest<K, V> {
         sourceEndpointId?: string
     ) {
         this.requestId = requetId;
-        this.entries = entries;
+        this.entries = entries;;
         this.sourceEndpointId = sourceEndpointId;
     }
 
-    public createResponse(
-        updatedEntries: ReadonlyMap<K, V>
-    ): UpdateEntriesResponse<K, V> {
-        return new UpdateEntriesResponse<K, V>(
+    public createResponse(): RestoreEntriesResponse {
+        return new RestoreEntriesResponse(
             this.requestId,
-            updatedEntries,
             this.sourceEndpointId
         );
     }
 }
 
-export class UpdateEntriesResponse<K, V> {
+export class RestoreEntriesResponse {
     public readonly requestId: string;
-    public readonly updatedEntries: ReadonlyMap<K, V>;
     public readonly destinationEndpointId?: string;
     public constructor(
         requetId: string,
-        updatedEntries: ReadonlyMap<K, V>,
         destinationEndpointId?: string
     ) {
         this.requestId = requetId;
-        this.updatedEntries = updatedEntries;
         this.destinationEndpointId = destinationEndpointId;
     }
 }
 
-export class UpdateEntriesNotification<K, V> {
-    public readonly updatedEntries: ReadonlyMap<K, V>;
+export class RestoreEntriesNotification<K, V> {
+    public readonly entries: ReadonlyMap<K, V>;
     public readonly sourceEndpointId?: string;
     public readonly destinationEndpointId?: string;
     public constructor(
-        updatedEntries: ReadonlyMap<K, V>,
+        entries: ReadonlyMap<K, V>,
         sourceEndpointId?: string,
         destinationEndpointId?: string
     ) {
-        this.updatedEntries = updatedEntries;
+        this.entries = entries;
         this.sourceEndpointId = sourceEndpointId;
         this.destinationEndpointId = destinationEndpointId;
     }

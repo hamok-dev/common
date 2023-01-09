@@ -14,6 +14,9 @@ export abstract class MessageDefaultProcessor<T> extends MessageProcessor<T> {
     protected processEndpointStatesNotification(message: Message): T {
         return this.processMessage(message);
     }
+    protected processOngoingRequestsNotification(message: Message): T {
+        return this.processMessage(message);
+    }
     protected processStorageSyncRequest(message: Message): T {
         return this.processMessage(message);
     }
@@ -110,13 +113,49 @@ export abstract class MessageDefaultProcessor<T> extends MessageProcessor<T> {
     protected processUpdateEntriesNotification(message: Message): T {
         return this.processMessage(message);
     }
-    protected processPublishCustomDataRequest(message: Message): T {
+    protected processRestoreEntriesRequest(message: Message): T {
         return this.processMessage(message);
     }
-    protected processPublishCustomDataResponse(message: Message): T {
+    protected processRestoreEntriesResponse(message: Message): T {
         return this.processMessage(message);
     }
-    protected processPublishCustomDataNotification(message: Message): T {
+    protected processRestoreEntriesNotification(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processAddSubscriptionRequest(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processAddSubscriptionResponse(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processAddSubscriptionNotification(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processRemoveSubscriptionRequest(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processRemoveSubscriptionResponse(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processRemoveSubscriptionNotification(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processPublishDataRequest(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processPublishDataResponse(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processPublishDataNotification(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processGetSubscriptionsRequest(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processGetSubscriptionsResponse(message: Message): T {
+        return this.processMessage(message);
+    }
+    protected processUnrecognizedMessage(message: Message): T {
         return this.processMessage(message);
     }
 }

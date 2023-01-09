@@ -44,8 +44,8 @@ export class DeleteEntriesNotification<K> {
     public readonly destinationEndpointId?: string;
     public constructor(
         keys: ReadonlySet<K>,
-        sourceEndpointId: string,
-        destinationEndpointId: string
+        sourceEndpointId?: string,
+        destinationEndpointId?: string
     ) {
         this.keys = keys;
         this.sourceEndpointId = sourceEndpointId;

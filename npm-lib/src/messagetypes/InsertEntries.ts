@@ -38,12 +38,12 @@ export class InsertEntriesResponse<K, V> {
 
 export class InsertEntriesNotification<K, V> {
     public readonly entries: ReadonlyMap<K, V>;
-    public readonly sourceEndpointId: string;
-    public readonly destinationEndpointId: string;
+    public readonly sourceEndpointId?: string;
+    public readonly destinationEndpointId?: string;
     public constructor(
         entries: ReadonlyMap<K, V>,
-        sourceEndpointId: string,
-        destinationEndpointId: string
+        sourceEndpointId?: string,
+        destinationEndpointId?: string
     ) {
         this.entries = entries;
         this.sourceEndpointId = sourceEndpointId;

@@ -16,7 +16,13 @@ message Message {
      */
     ENDPOINT_STATES_NOTIFICATION = 2;
  
-    
+    /**
+    * Inform endpoint about the requests currently ongoing and prevent the requester to timeout those.
+    * (fetching took more time than time requestTimeout)
+    */
+    ONGOING_REQUESTS_NOTIFICATION = 3;
+
+
     /**
      * Storage sync is requested by a follower endpoint because it cannot follow the leader. In this case
      * leader should dump every entry from storages synchronized by the endpoint (e.g.: replicated storage) and send it to the follower
@@ -88,7 +94,7 @@ message Message {
      * Response to a gen entries request contain the found entries
     */
     GET_ENTRIES_RESPONSE = 29;
- 
+
 
     /**
      * Request the size of a storage
@@ -188,19 +194,67 @@ message Message {
      */
     UPDATE_ENTRIES_NOTIFICATION = 58;
 
+    /**
+    * Restore entries request
+    */
+    RESTORE_ENTRIES_REQUEST = 60;
+    /**
+    * Response to a restore request
+    */
+    RESTORE_ENTRIES_RESPONSE = 61;
+    /**
+    * Notification about a restore
+    */
+    RESTORE_ENTRIES_NOTIFICATION = 62;
 
     /**
-     * Request to publish custom data on storage request
+     * Request to add subscription
      */
-    PUBLISH_CUSTOM_DATA_REQUEST = 60;
+    ADD_SUBSCRIPTION_REQUEST = 128;
     /**
-     * Response to a publish data request
+     * Response to the request
     */
-    PUBLISH_CUSTOM_DATA_RESPONSE = 61;
+    ADD_SUBSCRIPTION_RESPONSE = 129;
     /**
-     * Notification to publish a custom data
+     * Notification about an added subscription
      */
-    PUBLISH_CUSTOM_DATA_NOTIFICATION = 62;
+    ADD_SUBSCRIPTION_NOTIFICATION = 130;
+
+    /**
+     * Request to remove subscription
+     */
+    REMOVE_SUBSCRIPTION_REQUEST = 132;
+    /**
+    * Response to the request
+    */
+    REMOVE_SUBSCRIPTION_RESPONSE = 133;
+    /**
+    * Notification about a removed subscription
+    */
+    REMOVE_SUBSCRIPTION_NOTIFICATION = 134;
+
+
+  /**
+    * Request to publish data
+    */
+    PUBLISH_CUSTOM_DATA_REQUEST = 136;
+    /**
+    * Response to a publish data request
+    */
+    PUBLISH_CUSTOM_DATA_RESPONSE = 137;
+    /**
+     * Notification about an added subscription
+    */
+    PUBLISH_CUSTOM_DATA_NOTIFICATION = 138;
+
+    /**
+    * Request to provide all subscriptions a remote endpoint currently has
+    */
+    GET_SUBSCRIPTIONS_REQUEST = 140;
+    /**
+    * Response to a publish data request
+    */
+    GET_SUBSCRIPTIONS_RESPONSE = 141;
   }
 
   enum MessageProtocol {
@@ -218,6 +272,11 @@ message Message {
     * Messages should be interpreted by a specific storage
     */
     STORAGE_COMMUNICATION_PROTOCOL = 3;
+
+    /**
+    * Messages should be interpreted by a publish / subscribe component
+    */
+    PUBSUB_COMMUNICATION_PROTOCOL = 4;
   }
 
   optional MessageProtocol protocol = 1;
@@ -249,4 +308,5 @@ message Message {
 
   optional int32 sequence = 26;
   optional bool lastMessage = 27;
+  // optional int64 message_sequence = 28;
 }

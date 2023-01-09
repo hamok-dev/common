@@ -1,10 +1,6 @@
 import { Message, Message_MessageType } from "./Models";
 
 export abstract class MessageProcessor<T> {
-    public constructor() {
-    
-    }
-
     public process(message: Message): T | undefined{
         if (!message.type) {
             return;
@@ -14,6 +10,8 @@ export abstract class MessageProcessor<T> {
                 return this.processHelloNotification(message);
             case Message_MessageType.ENDPOINT_STATES_NOTIFICATION:
                 return this.processEndpointStatesNotification(message);
+            case Message_MessageType.ONGOING_REQUESTS_NOTIFICATION:
+                return this.processOngoingRequestsNotification(message);
 
             case Message_MessageType.STORAGE_SYNC_REQUEST:
                 return this.processStorageSyncRequest(message);
@@ -92,20 +90,47 @@ export abstract class MessageProcessor<T> {
             case Message_MessageType.UPDATE_ENTRIES_NOTIFICATION:
                 return this.processUpdateEntriesNotification(message);
 
+            case Message_MessageType.RESTORE_ENTRIES_REQUEST:
+                return this.processRestoreEntriesRequest(message);
+            case Message_MessageType.RESTORE_ENTRIES_RESPONSE:
+                return this.processRestoreEntriesResponse(message);
+            case Message_MessageType.RESTORE_ENTRIES_NOTIFICATION:
+                return this.processRestoreEntriesNotification(message);
+
+            case Message_MessageType.ADD_SUBSCRIPTION_REQUEST:
+                return this.processAddSubscriptionRequest(message);
+            case Message_MessageType.ADD_SUBSCRIPTION_RESPONSE:
+                return this.processAddSubscriptionResponse(message);
+            case Message_MessageType.ADD_SUBSCRIPTION_NOTIFICATION:
+                return this.processAddSubscriptionNotification(message);
+
+            case Message_MessageType.REMOVE_SUBSCRIPTION_REQUEST:
+                return this.processRemoveSubscriptionRequest(message);
+            case Message_MessageType.REMOVE_SUBSCRIPTION_RESPONSE:
+                return this.processRemoveSubscriptionResponse(message);
+            case Message_MessageType.REMOVE_SUBSCRIPTION_NOTIFICATION:
+                return this.processRemoveSubscriptionNotification(message);
+
             case Message_MessageType.PUBLISH_CUSTOM_DATA_REQUEST:
-                return this.processPublishCustomDataRequest(message);
+                return this.processPublishDataRequest(message);
             case Message_MessageType.PUBLISH_CUSTOM_DATA_RESPONSE:
-                return this.processPublishCustomDataResponse(message);
+                return this.processPublishDataResponse(message);
             case Message_MessageType.PUBLISH_CUSTOM_DATA_NOTIFICATION:
-                return this.processPublishCustomDataNotification(message);
+                return this.processPublishDataNotification(message);
+            
+            case Message_MessageType.GET_SUBSCRIPTIONS_REQUEST:
+                return this.processGetSubscriptionsRequest(message);
+            case Message_MessageType.GET_SUBSCRIPTIONS_RESPONSE:
+                return this.processGetSubscriptionsResponse(message);
 
             default:
                 return this.processUnrecognizedMessage(message)
+            }
         }
-    }
-
+        
     protected abstract processHelloNotification(message: Message): T;
     protected abstract processEndpointStatesNotification(message: Message): T;
+    protected abstract processOngoingRequestsNotification(message: Message): T;
     
     protected abstract processStorageSyncRequest(message: Message): T;
     protected abstract processStorageSyncResponse(message: Message): T;
@@ -152,9 +177,24 @@ export abstract class MessageProcessor<T> {
     protected abstract processUpdateEntriesResponse(message: Message): T;
     protected abstract processUpdateEntriesNotification(message: Message): T;
 
-    protected abstract processPublishCustomDataRequest(message: Message): T;
-    protected abstract processPublishCustomDataResponse(message: Message): T;
-    protected abstract processPublishCustomDataNotification(message: Message): T;
+    protected abstract processRestoreEntriesRequest(message: Message): T;
+    protected abstract processRestoreEntriesResponse(message: Message): T;
+    protected abstract processRestoreEntriesNotification(message: Message): T;
+
+    protected abstract processAddSubscriptionRequest(message: Message): T;
+    protected abstract processAddSubscriptionResponse(message: Message): T;
+    protected abstract processAddSubscriptionNotification(message: Message): T;
+
+    protected abstract processRemoveSubscriptionRequest(message: Message): T;
+    protected abstract processRemoveSubscriptionResponse(message: Message): T;
+    protected abstract processRemoveSubscriptionNotification(message: Message): T;
+
+    protected abstract processPublishDataRequest(message: Message): T;
+    protected abstract processPublishDataResponse(message: Message): T;
+    protected abstract processPublishDataNotification(message: Message): T;
+
+    protected abstract processGetSubscriptionsRequest(message: Message): T;
+    protected abstract processGetSubscriptionsResponse(message: Message): T;
 
     protected abstract processUnrecognizedMessage(message: Message): T;
 }

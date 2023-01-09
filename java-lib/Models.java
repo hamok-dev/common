@@ -369,11 +369,19 @@ public final class Models {
     int getSequence();
 
     /**
+     * <pre>
+     * optional int64 message_sequence = 28;
+     * </pre>
+     *
      * <code>optional bool lastMessage = 27;</code>
      * @return Whether the lastMessage field is set.
      */
     boolean hasLastMessage();
     /**
+     * <pre>
+     * optional int64 message_sequence = 28;
+     * </pre>
+     *
      * <code>optional bool lastMessage = 27;</code>
      * @return The lastMessage.
      */
@@ -671,6 +679,16 @@ public final class Models {
        * <code>ENDPOINT_STATES_NOTIFICATION = 2;</code>
        */
       ENDPOINT_STATES_NOTIFICATION(2),
+      /**
+       * <pre>
+       **
+       * Inform endpoint about the requests currently ongoing and prevent the requester to timeout those.
+       * (fetching took more time than time requestTimeout)
+       * </pre>
+       *
+       * <code>ONGOING_REQUESTS_NOTIFICATION = 3;</code>
+       */
+      ONGOING_REQUESTS_NOTIFICATION(3),
       /**
        * <pre>
        **
@@ -976,30 +994,129 @@ public final class Models {
       /**
        * <pre>
        **
-       * Request to publish custom data on storage request
+       * Restore entries request
        * </pre>
        *
-       * <code>PUBLISH_CUSTOM_DATA_REQUEST = 60;</code>
+       * <code>RESTORE_ENTRIES_REQUEST = 60;</code>
        */
-      PUBLISH_CUSTOM_DATA_REQUEST(60),
+      RESTORE_ENTRIES_REQUEST(60),
+      /**
+       * <pre>
+       **
+       * Response to a restore request
+       * </pre>
+       *
+       * <code>RESTORE_ENTRIES_RESPONSE = 61;</code>
+       */
+      RESTORE_ENTRIES_RESPONSE(61),
+      /**
+       * <pre>
+       **
+       * Notification about a restore
+       * </pre>
+       *
+       * <code>RESTORE_ENTRIES_NOTIFICATION = 62;</code>
+       */
+      RESTORE_ENTRIES_NOTIFICATION(62),
+      /**
+       * <pre>
+       **
+       * Request to add subscription
+       * </pre>
+       *
+       * <code>ADD_SUBSCRIPTION_REQUEST = 128;</code>
+       */
+      ADD_SUBSCRIPTION_REQUEST(128),
+      /**
+       * <pre>
+       **
+       * Response to the request
+       * </pre>
+       *
+       * <code>ADD_SUBSCRIPTION_RESPONSE = 129;</code>
+       */
+      ADD_SUBSCRIPTION_RESPONSE(129),
+      /**
+       * <pre>
+       **
+       * Notification about an added subscription
+       * </pre>
+       *
+       * <code>ADD_SUBSCRIPTION_NOTIFICATION = 130;</code>
+       */
+      ADD_SUBSCRIPTION_NOTIFICATION(130),
+      /**
+       * <pre>
+       **
+       * Request to remove subscription
+       * </pre>
+       *
+       * <code>REMOVE_SUBSCRIPTION_REQUEST = 132;</code>
+       */
+      REMOVE_SUBSCRIPTION_REQUEST(132),
+      /**
+       * <pre>
+       **
+       * Response to the request
+       * </pre>
+       *
+       * <code>REMOVE_SUBSCRIPTION_RESPONSE = 133;</code>
+       */
+      REMOVE_SUBSCRIPTION_RESPONSE(133),
+      /**
+       * <pre>
+       **
+       * Notification about a removed subscription
+       * </pre>
+       *
+       * <code>REMOVE_SUBSCRIPTION_NOTIFICATION = 134;</code>
+       */
+      REMOVE_SUBSCRIPTION_NOTIFICATION(134),
+      /**
+       * <pre>
+       **
+       * Request to publish data
+       * </pre>
+       *
+       * <code>PUBLISH_CUSTOM_DATA_REQUEST = 136;</code>
+       */
+      PUBLISH_CUSTOM_DATA_REQUEST(136),
       /**
        * <pre>
        **
        * Response to a publish data request
        * </pre>
        *
-       * <code>PUBLISH_CUSTOM_DATA_RESPONSE = 61;</code>
+       * <code>PUBLISH_CUSTOM_DATA_RESPONSE = 137;</code>
        */
-      PUBLISH_CUSTOM_DATA_RESPONSE(61),
+      PUBLISH_CUSTOM_DATA_RESPONSE(137),
       /**
        * <pre>
        **
-       * Notification to publish a custom data
+       * Notification about an added subscription
        * </pre>
        *
-       * <code>PUBLISH_CUSTOM_DATA_NOTIFICATION = 62;</code>
+       * <code>PUBLISH_CUSTOM_DATA_NOTIFICATION = 138;</code>
        */
-      PUBLISH_CUSTOM_DATA_NOTIFICATION(62),
+      PUBLISH_CUSTOM_DATA_NOTIFICATION(138),
+      /**
+       * <pre>
+       **
+       * Request to provide all subscriptions a remote endpoint currently has
+       * </pre>
+       *
+       * <code>GET_SUBSCRIPTIONS_REQUEST = 140;</code>
+       */
+      GET_SUBSCRIPTIONS_REQUEST(140),
+      /**
+       * <pre>
+       **
+       * Response to a publish data request
+       * </pre>
+       *
+       * <code>GET_SUBSCRIPTIONS_RESPONSE = 141;</code>
+       */
+      GET_SUBSCRIPTIONS_RESPONSE(141),
       ;
 
       /**
@@ -1023,6 +1140,16 @@ public final class Models {
        * <code>ENDPOINT_STATES_NOTIFICATION = 2;</code>
        */
       public static final int ENDPOINT_STATES_NOTIFICATION_VALUE = 2;
+      /**
+       * <pre>
+       **
+       * Inform endpoint about the requests currently ongoing and prevent the requester to timeout those.
+       * (fetching took more time than time requestTimeout)
+       * </pre>
+       *
+       * <code>ONGOING_REQUESTS_NOTIFICATION = 3;</code>
+       */
+      public static final int ONGOING_REQUESTS_NOTIFICATION_VALUE = 3;
       /**
        * <pre>
        **
@@ -1328,30 +1455,129 @@ public final class Models {
       /**
        * <pre>
        **
-       * Request to publish custom data on storage request
+       * Restore entries request
        * </pre>
        *
-       * <code>PUBLISH_CUSTOM_DATA_REQUEST = 60;</code>
+       * <code>RESTORE_ENTRIES_REQUEST = 60;</code>
        */
-      public static final int PUBLISH_CUSTOM_DATA_REQUEST_VALUE = 60;
+      public static final int RESTORE_ENTRIES_REQUEST_VALUE = 60;
+      /**
+       * <pre>
+       **
+       * Response to a restore request
+       * </pre>
+       *
+       * <code>RESTORE_ENTRIES_RESPONSE = 61;</code>
+       */
+      public static final int RESTORE_ENTRIES_RESPONSE_VALUE = 61;
+      /**
+       * <pre>
+       **
+       * Notification about a restore
+       * </pre>
+       *
+       * <code>RESTORE_ENTRIES_NOTIFICATION = 62;</code>
+       */
+      public static final int RESTORE_ENTRIES_NOTIFICATION_VALUE = 62;
+      /**
+       * <pre>
+       **
+       * Request to add subscription
+       * </pre>
+       *
+       * <code>ADD_SUBSCRIPTION_REQUEST = 128;</code>
+       */
+      public static final int ADD_SUBSCRIPTION_REQUEST_VALUE = 128;
+      /**
+       * <pre>
+       **
+       * Response to the request
+       * </pre>
+       *
+       * <code>ADD_SUBSCRIPTION_RESPONSE = 129;</code>
+       */
+      public static final int ADD_SUBSCRIPTION_RESPONSE_VALUE = 129;
+      /**
+       * <pre>
+       **
+       * Notification about an added subscription
+       * </pre>
+       *
+       * <code>ADD_SUBSCRIPTION_NOTIFICATION = 130;</code>
+       */
+      public static final int ADD_SUBSCRIPTION_NOTIFICATION_VALUE = 130;
+      /**
+       * <pre>
+       **
+       * Request to remove subscription
+       * </pre>
+       *
+       * <code>REMOVE_SUBSCRIPTION_REQUEST = 132;</code>
+       */
+      public static final int REMOVE_SUBSCRIPTION_REQUEST_VALUE = 132;
+      /**
+       * <pre>
+       **
+       * Response to the request
+       * </pre>
+       *
+       * <code>REMOVE_SUBSCRIPTION_RESPONSE = 133;</code>
+       */
+      public static final int REMOVE_SUBSCRIPTION_RESPONSE_VALUE = 133;
+      /**
+       * <pre>
+       **
+       * Notification about a removed subscription
+       * </pre>
+       *
+       * <code>REMOVE_SUBSCRIPTION_NOTIFICATION = 134;</code>
+       */
+      public static final int REMOVE_SUBSCRIPTION_NOTIFICATION_VALUE = 134;
+      /**
+       * <pre>
+       **
+       * Request to publish data
+       * </pre>
+       *
+       * <code>PUBLISH_CUSTOM_DATA_REQUEST = 136;</code>
+       */
+      public static final int PUBLISH_CUSTOM_DATA_REQUEST_VALUE = 136;
       /**
        * <pre>
        **
        * Response to a publish data request
        * </pre>
        *
-       * <code>PUBLISH_CUSTOM_DATA_RESPONSE = 61;</code>
+       * <code>PUBLISH_CUSTOM_DATA_RESPONSE = 137;</code>
        */
-      public static final int PUBLISH_CUSTOM_DATA_RESPONSE_VALUE = 61;
+      public static final int PUBLISH_CUSTOM_DATA_RESPONSE_VALUE = 137;
       /**
        * <pre>
        **
-       * Notification to publish a custom data
+       * Notification about an added subscription
        * </pre>
        *
-       * <code>PUBLISH_CUSTOM_DATA_NOTIFICATION = 62;</code>
+       * <code>PUBLISH_CUSTOM_DATA_NOTIFICATION = 138;</code>
        */
-      public static final int PUBLISH_CUSTOM_DATA_NOTIFICATION_VALUE = 62;
+      public static final int PUBLISH_CUSTOM_DATA_NOTIFICATION_VALUE = 138;
+      /**
+       * <pre>
+       **
+       * Request to provide all subscriptions a remote endpoint currently has
+       * </pre>
+       *
+       * <code>GET_SUBSCRIPTIONS_REQUEST = 140;</code>
+       */
+      public static final int GET_SUBSCRIPTIONS_REQUEST_VALUE = 140;
+      /**
+       * <pre>
+       **
+       * Response to a publish data request
+       * </pre>
+       *
+       * <code>GET_SUBSCRIPTIONS_RESPONSE = 141;</code>
+       */
+      public static final int GET_SUBSCRIPTIONS_RESPONSE_VALUE = 141;
 
 
       public final int getNumber() {
@@ -1376,6 +1602,7 @@ public final class Models {
         switch (value) {
           case 1: return HELLO_NOTIFICATION;
           case 2: return ENDPOINT_STATES_NOTIFICATION;
+          case 3: return ONGOING_REQUESTS_NOTIFICATION;
           case 8: return STORAGE_SYNC_REQUEST;
           case 9: return STORAGE_SYNC_RESPONSE;
           case 12: return RAFT_VOTE_REQUEST;
@@ -1408,9 +1635,20 @@ public final class Models {
           case 56: return UPDATE_ENTRIES_REQUEST;
           case 57: return UPDATE_ENTRIES_RESPONSE;
           case 58: return UPDATE_ENTRIES_NOTIFICATION;
-          case 60: return PUBLISH_CUSTOM_DATA_REQUEST;
-          case 61: return PUBLISH_CUSTOM_DATA_RESPONSE;
-          case 62: return PUBLISH_CUSTOM_DATA_NOTIFICATION;
+          case 60: return RESTORE_ENTRIES_REQUEST;
+          case 61: return RESTORE_ENTRIES_RESPONSE;
+          case 62: return RESTORE_ENTRIES_NOTIFICATION;
+          case 128: return ADD_SUBSCRIPTION_REQUEST;
+          case 129: return ADD_SUBSCRIPTION_RESPONSE;
+          case 130: return ADD_SUBSCRIPTION_NOTIFICATION;
+          case 132: return REMOVE_SUBSCRIPTION_REQUEST;
+          case 133: return REMOVE_SUBSCRIPTION_RESPONSE;
+          case 134: return REMOVE_SUBSCRIPTION_NOTIFICATION;
+          case 136: return PUBLISH_CUSTOM_DATA_REQUEST;
+          case 137: return PUBLISH_CUSTOM_DATA_RESPONSE;
+          case 138: return PUBLISH_CUSTOM_DATA_NOTIFICATION;
+          case 140: return GET_SUBSCRIPTIONS_REQUEST;
+          case 141: return GET_SUBSCRIPTIONS_RESPONSE;
           default: return null;
         }
       }
@@ -1492,6 +1730,15 @@ public final class Models {
        * <code>STORAGE_COMMUNICATION_PROTOCOL = 3;</code>
        */
       STORAGE_COMMUNICATION_PROTOCOL(3),
+      /**
+       * <pre>
+       **
+       * Messages should be interpreted by a publish / subscribe component
+       * </pre>
+       *
+       * <code>PUBSUB_COMMUNICATION_PROTOCOL = 4;</code>
+       */
+      PUBSUB_COMMUNICATION_PROTOCOL(4),
       ;
 
       /**
@@ -1521,6 +1768,15 @@ public final class Models {
        * <code>STORAGE_COMMUNICATION_PROTOCOL = 3;</code>
        */
       public static final int STORAGE_COMMUNICATION_PROTOCOL_VALUE = 3;
+      /**
+       * <pre>
+       **
+       * Messages should be interpreted by a publish / subscribe component
+       * </pre>
+       *
+       * <code>PUBSUB_COMMUNICATION_PROTOCOL = 4;</code>
+       */
+      public static final int PUBSUB_COMMUNICATION_PROTOCOL_VALUE = 4;
 
 
       public final int getNumber() {
@@ -1546,6 +1802,7 @@ public final class Models {
           case 1: return GRID_COMMUNICATION_PROTOCOL;
           case 2: return RAFT_COMMUNICATION_PROTOCOL;
           case 3: return STORAGE_COMMUNICATION_PROTOCOL;
+          case 4: return PUBSUB_COMMUNICATION_PROTOCOL;
           default: return null;
         }
       }
@@ -2301,6 +2558,10 @@ public final class Models {
     public static final int LASTMESSAGE_FIELD_NUMBER = 27;
     private boolean lastMessage_;
     /**
+     * <pre>
+     * optional int64 message_sequence = 28;
+     * </pre>
+     *
      * <code>optional bool lastMessage = 27;</code>
      * @return Whether the lastMessage field is set.
      */
@@ -2309,6 +2570,10 @@ public final class Models {
       return ((bitField0_ & 0x00200000) != 0);
     }
     /**
+     * <pre>
+     * optional int64 message_sequence = 28;
+     * </pre>
+     *
      * <code>optional bool lastMessage = 27;</code>
      * @return The lastMessage.
      */
@@ -4941,6 +5206,10 @@ public final class Models {
 
       private boolean lastMessage_ ;
       /**
+       * <pre>
+       * optional int64 message_sequence = 28;
+       * </pre>
+       *
        * <code>optional bool lastMessage = 27;</code>
        * @return Whether the lastMessage field is set.
        */
@@ -4949,6 +5218,10 @@ public final class Models {
         return ((bitField0_ & 0x02000000) != 0);
       }
       /**
+       * <pre>
+       * optional int64 message_sequence = 28;
+       * </pre>
+       *
        * <code>optional bool lastMessage = 27;</code>
        * @return The lastMessage.
        */
@@ -4957,6 +5230,10 @@ public final class Models {
         return lastMessage_;
       }
       /**
+       * <pre>
+       * optional int64 message_sequence = 28;
+       * </pre>
+       *
        * <code>optional bool lastMessage = 27;</code>
        * @param value The lastMessage to set.
        * @return This builder for chaining.
@@ -4968,6 +5245,10 @@ public final class Models {
         return this;
       }
       /**
+       * <pre>
+       * optional int64 message_sequence = 28;
+       * </pre>
+       *
        * <code>optional bool lastMessage = 27;</code>
        * @return This builder for chaining.
        */
@@ -5045,7 +5326,7 @@ public final class Models {
   static {
     java.lang.String[] descriptorData = {
       "\n\023protos/models.proto\022\032io.github.hamok.d" +
-      "ev.schema\"\375\016\n\007Message\022E\n\010protocol\030\001 \001(\0162" +
+      "ev.schema\"\264\022\n\007Message\022E\n\010protocol\030\001 \001(\0162" +
       "3.io.github.hamok.dev.schema.Message.Mes" +
       "sageProtocol\022=\n\004type\030\002 \001(\0162/.io.github.h" +
       "amok.dev.schema.Message.MessageType\022\020\n\010s" +
@@ -5063,37 +5344,48 @@ public final class Models {
       "vLogIndex\030\026 \001(\005\022\020\n\010raftTerm\030\027 \001(\005\022\031\n\021raf" +
       "tPeerNextIndex\030\030 \001(\005\022\027\n\017raftCandidateId\030" +
       "\031 \001(\t\022\020\n\010sequence\030\032 \001(\005\022\023\n\013lastMessage\030\033" +
-      " \001(\010\"\271\010\n\013MessageType\022\026\n\022HELLO_NOTIFICATI" +
-      "ON\020\001\022 \n\034ENDPOINT_STATES_NOTIFICATION\020\002\022\030" +
-      "\n\024STORAGE_SYNC_REQUEST\020\010\022\031\n\025STORAGE_SYNC" +
-      "_RESPONSE\020\t\022\025\n\021RAFT_VOTE_REQUEST\020\014\022\026\n\022RA" +
-      "FT_VOTE_RESPONSE\020\r\022%\n!RAFT_APPEND_ENTRIE" +
-      "S_REQUEST_CHUNK\020\020\022 \n\034RAFT_APPEND_ENTRIES" +
-      "_RESPONSE\020\021\022\032\n\026SUBMIT_MESSAGE_REQUEST\020\024\022" +
-      "\033\n\027SUBMIT_MESSAGE_RESPONSE\020\025\022\031\n\025CLEAR_EN" +
-      "TRIES_REQUEST\020\030\022\032\n\026CLEAR_ENTRIES_RESPONS" +
-      "E\020\031\022\036\n\032CLEAR_ENTRIES_NOTIFICATION\020\032\022\027\n\023G" +
-      "ET_ENTRIES_REQUEST\020\034\022\030\n\024GET_ENTRIES_RESP" +
-      "ONSE\020\035\022\024\n\020GET_SIZE_REQUEST\020 \022\025\n\021GET_SIZE" +
-      "_RESPONSE\020!\022\024\n\020GET_KEYS_REQUEST\020$\022\025\n\021GET" +
-      "_KEYS_RESPONSE\020%\022\032\n\026DELETE_ENTRIES_REQUE" +
-      "ST\020(\022\033\n\027DELETE_ENTRIES_RESPONSE\020)\022\037\n\033DEL" +
-      "ETE_ENTRIES_NOTIFICATION\020*\022\032\n\026REMOVE_ENT" +
-      "RIES_REQUEST\020,\022\033\n\027REMOVE_ENTRIES_RESPONS" +
-      "E\020-\022\037\n\033REMOVE_ENTRIES_NOTIFICATION\020.\022\031\n\025" +
-      "EVICT_ENTRIES_REQUEST\0200\022\032\n\026EVICT_ENTRIES" +
-      "_RESPONSE\0201\022\036\n\032EVICT_ENTRIES_NOTIFICATIO" +
-      "N\0202\022\032\n\026INSERT_ENTRIES_REQUEST\0204\022\033\n\027INSER" +
-      "T_ENTRIES_RESPONSE\0205\022\037\n\033INSERT_ENTRIES_N" +
-      "OTIFICATION\0206\022\032\n\026UPDATE_ENTRIES_REQUEST\020" +
-      "8\022\033\n\027UPDATE_ENTRIES_RESPONSE\0209\022\037\n\033UPDATE" +
-      "_ENTRIES_NOTIFICATION\020:\022\037\n\033PUBLISH_CUSTO" +
-      "M_DATA_REQUEST\020<\022 \n\034PUBLISH_CUSTOM_DATA_" +
-      "RESPONSE\020=\022$\n PUBLISH_CUSTOM_DATA_NOTIFI" +
-      "CATION\020>\"w\n\017MessageProtocol\022\037\n\033GRID_COMM" +
-      "UNICATION_PROTOCOL\020\001\022\037\n\033RAFT_COMMUNICATI" +
-      "ON_PROTOCOL\020\002\022\"\n\036STORAGE_COMMUNICATION_P" +
-      "ROTOCOL\020\003"
+      " \001(\010\"\314\013\n\013MessageType\022\026\n\022HELLO_NOTIFICATI" +
+      "ON\020\001\022 \n\034ENDPOINT_STATES_NOTIFICATION\020\002\022!" +
+      "\n\035ONGOING_REQUESTS_NOTIFICATION\020\003\022\030\n\024STO" +
+      "RAGE_SYNC_REQUEST\020\010\022\031\n\025STORAGE_SYNC_RESP" +
+      "ONSE\020\t\022\025\n\021RAFT_VOTE_REQUEST\020\014\022\026\n\022RAFT_VO" +
+      "TE_RESPONSE\020\r\022%\n!RAFT_APPEND_ENTRIES_REQ" +
+      "UEST_CHUNK\020\020\022 \n\034RAFT_APPEND_ENTRIES_RESP" +
+      "ONSE\020\021\022\032\n\026SUBMIT_MESSAGE_REQUEST\020\024\022\033\n\027SU" +
+      "BMIT_MESSAGE_RESPONSE\020\025\022\031\n\025CLEAR_ENTRIES" +
+      "_REQUEST\020\030\022\032\n\026CLEAR_ENTRIES_RESPONSE\020\031\022\036" +
+      "\n\032CLEAR_ENTRIES_NOTIFICATION\020\032\022\027\n\023GET_EN" +
+      "TRIES_REQUEST\020\034\022\030\n\024GET_ENTRIES_RESPONSE\020" +
+      "\035\022\024\n\020GET_SIZE_REQUEST\020 \022\025\n\021GET_SIZE_RESP" +
+      "ONSE\020!\022\024\n\020GET_KEYS_REQUEST\020$\022\025\n\021GET_KEYS" +
+      "_RESPONSE\020%\022\032\n\026DELETE_ENTRIES_REQUEST\020(\022" +
+      "\033\n\027DELETE_ENTRIES_RESPONSE\020)\022\037\n\033DELETE_E" +
+      "NTRIES_NOTIFICATION\020*\022\032\n\026REMOVE_ENTRIES_" +
+      "REQUEST\020,\022\033\n\027REMOVE_ENTRIES_RESPONSE\020-\022\037" +
+      "\n\033REMOVE_ENTRIES_NOTIFICATION\020.\022\031\n\025EVICT" +
+      "_ENTRIES_REQUEST\0200\022\032\n\026EVICT_ENTRIES_RESP" +
+      "ONSE\0201\022\036\n\032EVICT_ENTRIES_NOTIFICATION\0202\022\032" +
+      "\n\026INSERT_ENTRIES_REQUEST\0204\022\033\n\027INSERT_ENT" +
+      "RIES_RESPONSE\0205\022\037\n\033INSERT_ENTRIES_NOTIFI" +
+      "CATION\0206\022\032\n\026UPDATE_ENTRIES_REQUEST\0208\022\033\n\027" +
+      "UPDATE_ENTRIES_RESPONSE\0209\022\037\n\033UPDATE_ENTR" +
+      "IES_NOTIFICATION\020:\022\033\n\027RESTORE_ENTRIES_RE" +
+      "QUEST\020<\022\034\n\030RESTORE_ENTRIES_RESPONSE\020=\022 \n" +
+      "\034RESTORE_ENTRIES_NOTIFICATION\020>\022\035\n\030ADD_S" +
+      "UBSCRIPTION_REQUEST\020\200\001\022\036\n\031ADD_SUBSCRIPTI" +
+      "ON_RESPONSE\020\201\001\022\"\n\035ADD_SUBSCRIPTION_NOTIF" +
+      "ICATION\020\202\001\022 \n\033REMOVE_SUBSCRIPTION_REQUES" +
+      "T\020\204\001\022!\n\034REMOVE_SUBSCRIPTION_RESPONSE\020\205\001\022" +
+      "%\n REMOVE_SUBSCRIPTION_NOTIFICATION\020\206\001\022 " +
+      "\n\033PUBLISH_CUSTOM_DATA_REQUEST\020\210\001\022!\n\034PUBL" +
+      "ISH_CUSTOM_DATA_RESPONSE\020\211\001\022%\n PUBLISH_C" +
+      "USTOM_DATA_NOTIFICATION\020\212\001\022\036\n\031GET_SUBSCR" +
+      "IPTIONS_REQUEST\020\214\001\022\037\n\032GET_SUBSCRIPTIONS_" +
+      "RESPONSE\020\215\001\"\232\001\n\017MessageProtocol\022\037\n\033GRID_" +
+      "COMMUNICATION_PROTOCOL\020\001\022\037\n\033RAFT_COMMUNI" +
+      "CATION_PROTOCOL\020\002\022\"\n\036STORAGE_COMMUNICATI" +
+      "ON_PROTOCOL\020\003\022!\n\035PUBSUB_COMMUNICATION_PR" +
+      "OTOCOL\020\004"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

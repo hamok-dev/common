@@ -19,7 +19,7 @@ let actualLevel: Logger.LogLevelDesc = "info";
 
 const loggers = new Map();
 const createLogger = (moduleName: string) => {
-    const logger = initLogger(`ObserveRTC::${moduleName}`);
+    const logger = initLogger(`Hamok::${moduleName}`);
     logger.setLevel(actualLevel);
     loggers.set(moduleName, logger);
     return logger;

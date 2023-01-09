@@ -1,14 +1,17 @@
 export class PublishCustomDataRequest {
     public readonly requestId: string;
-    public readonly customData: Uint8Array[];
+    public readonly event: string;
+    public readonly customData: Uint8Array;
     public readonly sourceEndpointId?: string;
     public constructor(
         requetId: string,
-        entries: Uint8Array[],
+        event: string,
+        customData: Uint8Array,
         sourceEndpointId?: string,
     ) {
         this.requestId = requetId;
-        this.customData = entries;
+        this.event = event;
+        this.customData = customData;
         this.sourceEndpointId = sourceEndpointId;
     }
 
@@ -38,14 +41,20 @@ export class PublishCustomDataResponse {
     }
 }
 
-export class PublishCustomDataNotification<K> {
+export class PublishCustomDataNotification {
     public readonly sourceEndpointId?: string;
+    public readonly event: string;
+    public readonly customData: Uint8Array;
     public readonly destinationEndpointId?: string;
     public constructor(
+        event: string,
+        customData: Uint8Array,
         sourceEndpointId?: string,
         destinationEndpointId?: string,
     ) {
         this.sourceEndpointId = sourceEndpointId;
+        this.event = event;
+        this.customData = customData;
         this.destinationEndpointId = destinationEndpointId;
     }
 }

@@ -488,9 +488,93 @@ describe("MessageProcessor", () => {
         expect(processor.invokedTarget).toBe(true);
     });
 
-    it("PUBLISH_CUSTOM_DATA_REQUEST", () => {
+    it("ADD_SUBSCRIPTION_REQUEST", () => {
         const processor = new class extends MessageProcessorTest {
-            protected processPublishCustomDataRequest(): void {
+            protected processAddSubscriptionRequest(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.ADD_SUBSCRIPTION_REQUEST,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("ADD_SUBSCRIPTION_RESPONSE", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processAddSubscriptionResponse(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.ADD_SUBSCRIPTION_RESPONSE,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("ADD_SUBSCRIPTION_NOTIFICATION", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processAddSubscriptionNotification(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.ADD_SUBSCRIPTION_NOTIFICATION,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("REMOVE_SUBSCRIPTION_REQUEST", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processRemoveSubscriptionRequest(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.REMOVE_SUBSCRIPTION_REQUEST,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("REMOVE_SUBSCRIPTION_RESPONSE", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processRemoveSubscriptionResponse(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.REMOVE_SUBSCRIPTION_RESPONSE,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("REMOVE_SUBSCRIPTION_NOTIFICATION", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processRemoveSubscriptionNotification(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.REMOVE_SUBSCRIPTION_NOTIFICATION,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("PUBLISH_DATA_REQUEST", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processPublishDataRequest(): void {
                 this.invokedTarget = true;
             }
         }();
@@ -502,9 +586,9 @@ describe("MessageProcessor", () => {
         expect(processor.invokedTarget).toBe(true);
     });
 
-    it("PUBLISH_CUSTOM_DATA_RESPONSE", () => {
+    it("PUBLISH_DATA_RESPONSE", () => {
         const processor = new class extends MessageProcessorTest {
-            protected processPublishCustomDataResponse(): void {
+            protected processPublishDataResponse(): void {
                 this.invokedTarget = true;
             }
         }();
@@ -516,14 +600,42 @@ describe("MessageProcessor", () => {
         expect(processor.invokedTarget).toBe(true);
     });
 
-    it("PUBLISH_CUSTOM_DATA_NOTIFICATION", () => {
+    it("PUBLISH_DATA_NOTIFICATION", () => {
         const processor = new class extends MessageProcessorTest {
-            protected processPublishCustomDataNotification(): void {
+            protected processPublishDataNotification(): void {
                 this.invokedTarget = true;
             }
         }();
         processor.process(new Message({
             type: Message_MessageType.PUBLISH_CUSTOM_DATA_NOTIFICATION,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("GET_SUBSCRIPTIONS_REQUEST", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processGetSubscriptionsRequest(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.GET_SUBSCRIPTIONS_REQUEST,
+        }));
+        expect(processor.invokedProcessMessage).toBe(false);
+        expect(processor.invokedProcessUnrecognizedMessage).toBe(false);
+        expect(processor.invokedTarget).toBe(true);
+    });
+
+    it("GET_SUBSCRIPTIONS_RESPONSE", () => {
+        const processor = new class extends MessageProcessorTest {
+            protected processGetSubscriptionsResponse(): void {
+                this.invokedTarget = true;
+            }
+        }();
+        processor.process(new Message({
+            type: Message_MessageType.GET_SUBSCRIPTIONS_RESPONSE,
         }));
         expect(processor.invokedProcessMessage).toBe(false);
         expect(processor.invokedProcessUnrecognizedMessage).toBe(false);

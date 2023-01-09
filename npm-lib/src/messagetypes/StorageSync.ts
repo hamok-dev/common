@@ -1,5 +1,3 @@
-import { Message } from "../Models";
-
 export class StorageSyncRequest {
     public readonly requestId: string;
     public readonly leaderId?: string;

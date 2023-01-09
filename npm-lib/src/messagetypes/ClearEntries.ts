@@ -1,4 +1,4 @@
-export class ClearEntriesRequest<K> {
+export class ClearEntriesRequest {
     public readonly requestId: string;
     public readonly sourceEndpointId?: string;
     public constructor(
@@ -12,7 +12,7 @@ export class ClearEntriesRequest<K> {
     public createResponse(): ClearEntriesResponse {
         return new ClearEntriesResponse(
             this.requestId,
-            this.sourceEndpointId
+            this.sourceEndpointId!
         );
     }
 }
@@ -29,7 +29,7 @@ export class ClearEntriesResponse {
     }
 }
 
-export class ClearEntriesNotification<K> {
+export class ClearEntriesNotification {
     public readonly sourceEndpointId?: string;
     public readonly destinationEndpointId?: string;
     public constructor(

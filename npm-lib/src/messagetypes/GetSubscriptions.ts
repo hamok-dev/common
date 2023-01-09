@@ -1,39 +1,36 @@
-export class GetEntriesRequest<K> {
+export class GetSubscriptionsRequest {
     public readonly requestId: string;
-    public readonly keys: ReadonlySet<K>;
     public readonly sourceEndpointId?: string;
     public constructor(
-        keys: ReadonlySet<K>,
         requetId: string,
         sourceEndpointId?: string
     ) {
         this.requestId = requetId;
-        this.keys = keys;
         this.sourceEndpointId = sourceEndpointId;
     }
 
-    public createResponse<V>(
-        foundEntries: ReadonlyMap<K, V>
-    ): GetEntriesResponse<K, V> {
-        return new GetEntriesResponse<K, V>(
+    public createResponse(
+        subscriptions: Map<string, ReadonlySet<string>>
+    ): GetSubscriptionsResponse {
+        return new GetSubscriptionsResponse(
             this.requestId,
-            foundEntries,
+            subscriptions,
             this.sourceEndpointId
         );
     }
 }
 
-export class GetEntriesResponse<K, V> {
+export class GetSubscriptionsResponse {
     public readonly requestId: string;
-    public readonly foundEntries: ReadonlyMap<K, V>;
+    public readonly subscriptions: Map<string, ReadonlySet<string>>;
     public readonly destinationEndpointId?: string;
     public constructor(
         requetId: string,
-        foundEntries: ReadonlyMap<K, V>,
+        subscriptions: Map<string, ReadonlySet<string>>,
         destinationEndpointId?: string
     ) {
         this.requestId = requetId;
-        this.foundEntries = foundEntries;
+        this.subscriptions = subscriptions;
         this.destinationEndpointId = destinationEndpointId;
     }
 }

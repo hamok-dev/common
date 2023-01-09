@@ -227,19 +227,17 @@ Message Type: `CLEAR_ENTRIES_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
 
 #### Clear Entries Response
 
 Message Type: `CLEAR_ENTRIES_RESPONSE`
 
-| Target Field | Message Field | Required in encoding | Required in decoding |
+| Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|
-| requestId |  |  |  |
-| destinationEndpointId |  |  |  |
-|  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint id the response will sent to |
 
 ### Clear Entries Notification
 
@@ -247,9 +245,8 @@ Message Type: `CLEAR_ENTRIES_NOTIFICATION`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint the notification is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
 
 ### Get Entries Request
 
@@ -257,9 +254,9 @@ Message Type: `GET_ENTRIES_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys | keys | Required | Required | The subjected keys entries are requested for |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
 
 #### Get Entries Response
 
@@ -267,9 +264,9 @@ Message Type: `GET_ENTRIES_RESPONSE`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint the notification is sent from |
+| keys, values | foundEntries | Required | Required | The existing entries found on an endpoint |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
 
 ### Get Size Request
 
@@ -277,9 +274,8 @@ Message Type: `GET_SIZE_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint the notification is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
 
 #### Get Size Response
 
@@ -287,9 +283,9 @@ Message Type: `GET_SIZE_RESPONSE`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint the notification is sent from |
+| storageSize | size | Required | Required | The size of the storage |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
 
 ### Get Size Request
 
@@ -297,9 +293,8 @@ Message Type: `GET_KEYS_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint the notification is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
 
 #### Get Size Response
 
@@ -307,9 +302,9 @@ Message Type: `GET_KEYS_RESPONSE`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint the notification is sent from |
+| keys | keys | Required | Required | All existing keys the storage has on an endpoint |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
 
 ### Delete Entries Request
 
@@ -317,71 +312,69 @@ Message Type: `DELETE_ENTRIES_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys | keys | Required | Required | The subjected keys has to be deleted on a remote endpoint |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
 
-#### Delete Entries Response
+### Delete Entries Response
+
+Message Type: `DELETE_ENTRIES_RESPONSE`
+
+| Message Field | Target Field | Encoding | Decoding | Description |
+|---|---|---|---|---|
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys | deletedKeys | Required | Required | The key of entries deleted on a remote endpoint |
+| destinationId | destinationEndpointId | Optional | Optional | The source endpoint id the request is sent from |
+
+### Delete Entries Notification
+
+Message Type: `DELETE_ENTRIES_NOTIFICATION`
+
+| Message Field | Target Field | Encoding | Decoding | Description |
+|---|---|---|---|---|
+| keys | keys | Required | Required | The subjected keys has to be deleted on a remote endpoint |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint id the notification is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
+
+#### Remove Entries Request
 
 Message Type: `REMOVE_ENTRIES_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys | keys | Required | Required | The subjected keys has to be deleted on a remote endpoint |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
 
-### Delete Entries Notification
+### Remove Entries Response
 
 Message Type: `REMOVE_ENTRIES_RESPONSE`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys, values | removedEntries | Required | Required | The key of entries deleted on a remote endpoint |
+| destinationId | destinationEndpointId | Optional | Optional | The source endpoint id the request is sent from |
 
-### Remove Entries Request
+### Remove Entries Notification
 
 Message Type: `REMOVE_ENTRIES_NOTIFICATION`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-
-#### Remove Entries Response
-
-Message Type: `HELLO_NOTIFICATION`
-
-| Message Field | Target Field | Encoding | Decoding | Description |
-|---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-
-
-### Remove Entries Notification
-
-Message Type: `EVICT_ENTRIES_REQUEST`
-
-| Target Field | Message Field | Required in encoding | Required in decoding |
-|---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-
+| keys | keys | Required | Required | The subjected keys has to be deleted on a remote endpoint |
+| sourceId | sourceEndpointId | Optional | Optional | The source endpoint id the notification is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint the notification is sent to |
 
 ### Evict Entries Request
 
-Message Type: `HELLO_NOTIFICATION`
+Message Type: `EVICT_ENTRIES_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys | keys | Required | Required | The subjected keys has to be evicted on a remote endpoint |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
 
 #### Evict Entries Response
 
@@ -389,9 +382,8 @@ Message Type: `EVICT_ENTRIES_RESPONSE`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request the response belong to |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint id the request is sent to |
 
 ### Evict Entries Notification
 
@@ -399,9 +391,9 @@ Message Type: `EVICT_ENTRIES_NOTIFICATION`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| keys | keys | Required | Required | The subjected keys has to be evicted on a remote endpoint |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint id the request is sent to |
 
 ### Insert Entries Request
 
@@ -409,9 +401,9 @@ Message Type: `INSERT_ENTRIES_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys, values | entries | Required | Required | The subjected entries intended to be inserted on a remote endpoint |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
 
 #### Insert Entries Response
 
@@ -419,9 +411,9 @@ Message Type: `INSERT_ENTRIES_RESPONSE`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys, values | existingEntries | Required | Required | Entries already exists on a remote endpoint and did not overwritten |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint id the request is sent to |
 
 ### Insert Entries Notification
 
@@ -429,9 +421,9 @@ Message Type: `INSERT_ENTRIES_NOTIFICATION`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| keys, values | existingEntries | Required | Required | Entries already exists on a remote endpoint and did not overwritten |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the notification is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint id the notification is sent to |
 
 ### Update Entries Request
 
@@ -439,9 +431,9 @@ Message Type: `UPDATE_ENTRIES_REQUEST`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys, values | entries | Required | Required | Entries intended to be created or updated |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the request is sent from |
 
 #### Update Entries Response
 
@@ -449,9 +441,9 @@ Message Type: `UPDATE_ENTRIES_RESPONSE`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| requestId | requestId | Required | Required | The unique global id of the request |
+| keys, values | updatedEntries | Required | Required | Entries already exists on a remote endpoint and updated. the response contain the old values before the update performed |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint id the notification is sent to |
 
 ### Update Entries Notification
 
@@ -459,9 +451,9 @@ Message Type: `UPDATE_ENTRIES_NOTIFICATION`
 
 | Message Field | Target Field | Encoding | Decoding | Description |
 |---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| keys, values | entries | Required | Required | Entries intended to be created or updated |
+| sourceId | sourceEndpointId | Optional | Required | The source endpoint id the notification is sent from |
+| destinationId | destinationEndpointId | Optional | Optional | The destination endpoint id the notification is sent to |
 
 ### Publish Custom Data Request
 
