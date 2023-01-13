@@ -1,0 +1,61 @@
+name: Publish
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./npm-lib
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        working-directory: ${{env.working-directory}}
+        run: yarn
+
+      - name: Build
+        working-directory: ${{env.working-directory}}
+        run: yarn build
+
+      - name: Test
+        working-directory: ${{env.working-directory}}t
+        run: yarn test --detectOpenHandles --forceExi
+      
+      - name: Setup Custom Contexts
+        working-directory: ${{env.working-directory}}
+        shell: bash
+        run: | 
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+          echo "##[set-output name=version;]$(cat ./package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]')"
+        id: job_context
+
+      - name: Make snapshot version
+        working-directory: ${{env.working-directory}}
+        if: steps.job_context.outputs.branch != 'main'
+        run: |
+          npm version ${{ steps.job_context.outputs.version }}-SNAPSHOT.${{ github.sha }} --git-tag-version false
+
+      - name: Publish package to latest
+        working-directory: ${{env.working-directory}}
+        if: steps.job_context.outputs.branch == 'main'
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish package to develop
+        working-directory: ${{env.working-directory}}
+        if: steps.job_context.outputs.branch != 'main'
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: ${{ steps.job_context.outputs.version }}
