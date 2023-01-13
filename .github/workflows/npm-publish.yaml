@@ -40,7 +40,7 @@ jobs:
       - name: Make snapshot version
         if: steps.job_context.outputs.branch != 'main'
         run: |
-          npm preversion ${{ steps.job_context.outputs.version }} --preid=rc --git-tag-version false
+          npm version prerelease ${{ steps.job_context.outputs.version }} --preid=rc --git-tag-version false
         working-directory: ${{env.working-directory}}
 
       - name: Publish package to latest
