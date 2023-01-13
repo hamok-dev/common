@@ -45,17 +45,18 @@ jobs:
 
       - name: Publish package to latest
         if: steps.job_context.outputs.branch == 'main'
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: public
-          token: ${{ secrets.NPM_TOKEN }}
         working-directory: ${{env.working-directory}}
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm publish --ignore-scripts --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish package to develop
-        if: steps.job_context.outputs.branch != 'main'
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: public
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: ${{ steps.job_context.outputs.version }}
+      - name: Publish package to branch-tag
+        if: steps.job_context.outputs.branch == 'main'
         working-directory: ${{env.working-directory}}
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm publish --ignore-scripts --access public --tag ${{ steps.job_context.outputs.version }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
