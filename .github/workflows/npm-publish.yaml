@@ -57,6 +57,6 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --access public --tag ${{ steps.job_context.outputs.version }}
+          npm publish --ignore-scripts --access public --tag $(echo "${{ steps.job_context.outputs.version }}" | sed 's/[.-]//g')  ${{ steps.job_context.outputs.version }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
