@@ -2,7 +2,7 @@ export { Message,
     Message_MessageType as MessageType, 
     Message_MessageProtocol as MessageProtocol,
 } from "./Models";
-export { Codec, createCodec } from "./codecs/Codec";
+export { Codec, createCodec, Encoder, Decoder } from "./codecs/Codec";
 export { FacadedCodec } from "./codecs/FacadedCodec";
 export { createLogger, setLogLevel } from "./logger";
 export * as Collections from "./Collections";

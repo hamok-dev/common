@@ -91,7 +91,7 @@ export class PubSubCodec implements Codec<Input, Message> {
             type: MessageType.ADD_SUBSCRIPTION_REQUEST,
             requestId: request.requestId,
             sourceId: request.sourceEndpointId,
-            storageId: request.event,
+            raftLeaderId: request.event,
         });
     }
 
@@ -101,7 +101,7 @@ export class PubSubCodec implements Codec<Input, Message> {
         }
         return new AddSubscriptionRequest(
             message.requestId!,
-            message.storageId!,
+            message.raftLeaderId!,
             message.sourceId!,
         )
     }
@@ -129,7 +129,7 @@ export class PubSubCodec implements Codec<Input, Message> {
     public encodeAddSubscriptionNotification(notification: AddSubscriptionNotification): Message {
         return new Message({
             type: MessageType.ADD_SUBSCRIPTION_NOTIFICATION,
-            storageId: notification.event,
+            raftLeaderId: notification.event,
             sourceId: notification.sourceEndpointId,
             destinationId: notification.destinationEndpointId,
         });
@@ -140,7 +140,7 @@ export class PubSubCodec implements Codec<Input, Message> {
             throw new Error(`decodeAddSubscriptionNotification(): Message type must be ADD_SUBSCRIPTION_NOTIFICATION`);
         }
         return new AddSubscriptionNotification(
-            message.storageId!,
+            message.raftLeaderId!,
             message.sourceId,
             message.destinationId,
         )
@@ -152,7 +152,7 @@ export class PubSubCodec implements Codec<Input, Message> {
             type: MessageType.REMOVE_SUBSCRIPTION_REQUEST,
             requestId: request.requestId,
             sourceId: request.sourceEndpointId,
-            storageId: request.event,
+            raftLeaderId: request.event,
         });
     }
 
@@ -162,7 +162,7 @@ export class PubSubCodec implements Codec<Input, Message> {
         }
         return new RemoveSubscriptionRequest(
             message.requestId!,
-            message.storageId!,
+            message.raftLeaderId!,
             message.sourceId!,
         )
     }
@@ -190,7 +190,7 @@ export class PubSubCodec implements Codec<Input, Message> {
     public encodeRemoveSubscriptionNotification(notification: RemoveSubscriptionNotification): Message {
         return new Message({
             type: MessageType.REMOVE_SUBSCRIPTION_NOTIFICATION,
-            storageId: notification.event,
+            raftLeaderId: notification.event,
             sourceId: notification.sourceEndpointId,
             destinationId: notification.destinationEndpointId,
         });
@@ -201,7 +201,7 @@ export class PubSubCodec implements Codec<Input, Message> {
             throw new Error(`decodeRemoveSubscriptionNotification(): Message type must be REMOVE_SUBSCRIPTION_NOTIFICATION`);
         }
         return new RemoveSubscriptionNotification(
-            message.storageId!,
+            message.raftLeaderId!,
             message.sourceId,
             message.destinationId,
         )
@@ -212,7 +212,7 @@ export class PubSubCodec implements Codec<Input, Message> {
             type: MessageType.PUBLISH_CUSTOM_DATA_REQUEST,
             requestId: request.requestId,
             sourceId: request.sourceEndpointId,
-            storageId: request.event,
+            raftLeaderId: request.event,
             values: [request.customData],
         });
     }
@@ -223,7 +223,7 @@ export class PubSubCodec implements Codec<Input, Message> {
         }
         return new PublishCustomDataRequest(
             message.requestId!,
-            message.storageId!,
+            message.raftLeaderId!,
             message.values[0],
             message.sourceId!,
         )
@@ -252,7 +252,7 @@ export class PubSubCodec implements Codec<Input, Message> {
     public encodePublishCustomDataNotification(notification: PublishCustomDataNotification): Message {
         return new Message({
             type: MessageType.PUBLISH_CUSTOM_DATA_NOTIFICATION,
-            storageId: notification.event,
+            raftLeaderId: notification.event,
             values: [notification.customData],
             sourceId: notification.sourceEndpointId,
             destinationId: notification.destinationEndpointId,
@@ -264,7 +264,7 @@ export class PubSubCodec implements Codec<Input, Message> {
             throw new Error(`decodePublishCustomDataNotification(): Message type must be PUBLISH_DATA_NOTIFICATION`);
         }
         return new PublishCustomDataNotification(
-            message.storageId!,
+            message.raftLeaderId!,
             message.values[0],
             message.sourceId,
             message.destinationId,

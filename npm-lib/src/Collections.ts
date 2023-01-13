@@ -1,56 +1,5 @@
-export function unmodifiableMap<K, V>(map: Map<K, V>): Map<K, V> {
-    const result = new class implements Map<K, V> {
-        
-        public clear(): void {
-            throw new Error("Unsupported Operation clear() on a map wrapped to be immutable");
-        }
-        
-        public delete(): boolean {
-            throw new Error("Unsupported Operation delete() on a map wrapped to be immutable");
-        }
-        
-        /* eslint-disable @typescript-eslint/no-explicit-any */
-        public forEach(callbackfn: (value: V, key: K, map: Map<K, V>) => void, thisArg?: any): void {
-            map.forEach(callbackfn, thisArg);
-        }
-        
-        public get(key: K): V | undefined {
-            return map.get(key);
-        }
-        
-        public has(key: K): boolean {
-            return map.has(key);
-        }
-        
-        public set(): this {
-            throw new Error("Unsupported Operation set() on a map wrapped to be immutable");
-        }
-        
-        public get size(): number {
-            return map.size;
-        }
-
-        public entries(): IterableIterator<[K, V]> {
-            return map.entries();
-        }
-        
-        public keys(): IterableIterator<K> {
-            return map.keys();
-        }
-        
-        public values(): IterableIterator<V> {
-            return map.values();
-        }
-        
-        public [Symbol.iterator](): IterableIterator<[K, V]> {
-            return map.entries();
-        }
-
-        public get [Symbol.toStringTag](): string  {
-            return map[Symbol.toStringTag];
-        }
-    }
-    return result;
+export function unmodifiableMap<K, V>(map: Map<K, V>): ReadonlyMap<K, V> {
+    return map;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -138,53 +87,8 @@ export function splitMap<K, V>(source: ReadonlyMap<K, V>, size: number, defaultP
 }
 
 
-export function unmodifiableSet<T>(set: Set<T>): Set<T> {
-    const result: Set<T> = new class implements Set<T> {
-        public add(): this {
-            throw new Error("Unsupported Operation add() on a set wrapped to be immutable");
-        }
-
-        public clear(): void {
-            throw new Error("Unsupported Operation add() on a set wrapped to be immutable");
-        }
-
-        public delete(): boolean {
-            throw new Error("Unsupported Operation add() on a set wrapped to be immutable");
-        }
-
-        /* eslint-disable @typescript-eslint/no-explicit-any */
-        public forEach(callbackfn: (value: T, value2: T, set: Set<T>) => void, thisArg?: any): void {
-            set.forEach(callbackfn, thisArg);
-        }
-
-        public has(value: T): boolean {
-            return set.has(value);
-        }
-        public get size(): number {
-            return set.size;
-        }
-
-        public [Symbol.iterator](): IterableIterator<T> {
-            return set[Symbol.iterator]();
-        }
-
-        entries(): IterableIterator<[T, T]> {
-            return set.entries();
-        }
-
-        keys(): IterableIterator<T> {
-            return set.keys();
-        }
-
-        values(): IterableIterator<T> {
-            return set.values();
-        }
-
-        public get [Symbol.toStringTag](): string  {
-            return set[Symbol.toStringTag];
-        }
-    }
-    return result;
+export function unmodifiableSet<T>(set: Set<T>): ReadonlySet<T> {
+    return set;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
