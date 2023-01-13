@@ -27,7 +27,7 @@ jobs:
 
       - name: Test
         run: yarn test 
-        working-directory: ${{env.working-directory}}t
+        working-directory: ${{env.working-directory}}
       
       - name: Setup Custom Contexts
         shell: bash
