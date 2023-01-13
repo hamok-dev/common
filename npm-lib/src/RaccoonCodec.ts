@@ -60,7 +60,7 @@ export class RaccoonCodec implements Codec<Input, Message> {
                 return this.decodeRaftVoteResponse(message);
             case MessageType.RAFT_APPEND_ENTRIES_REQUEST_CHUNK:
                 return this.decodeRaftAppendEntriesRequest(message);
-            case MessageType.RAFT_VOTE_RESPONSE:
+            case MessageType.RAFT_APPEND_ENTRIES_RESPONSE:
                 return this.decodeRaftAppendEntriesResponse(message);
             default:
                 throw new Error(`Cannot decode message` + message);

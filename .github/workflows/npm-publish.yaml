@@ -26,8 +26,8 @@ jobs:
         working-directory: ${{env.working-directory}}
 
       - name: Test
-        run: yarn test --detectOpenHandles --forceExi
-        working-directory: ${{env.working-directory}}t
+        run: yarn test 
+        working-directory: ${{env.working-directory}}
       
       - name: Setup Custom Contexts
         shell: bash
@@ -40,22 +40,23 @@ jobs:
       - name: Make snapshot version
         if: steps.job_context.outputs.branch != 'main'
         run: |
-          npm version ${{ steps.job_context.outputs.version }}-SNAPSHOT.${{ github.sha }} --git-tag-version false
+          npm version prerelease --preid=rc --git-tag-version false
         working-directory: ${{env.working-directory}}
 
       - name: Publish package to latest
         if: steps.job_context.outputs.branch == 'main'
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: public
-          token: ${{ secrets.NPM_TOKEN }}
         working-directory: ${{env.working-directory}}
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm publish --ignore-scripts --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish package to develop
+      - name: Publish package to branch-tag
         if: steps.job_context.outputs.branch != 'main'
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: public
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: ${{ steps.job_context.outputs.version }}
         working-directory: ${{env.working-directory}}
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm publish --ignore-scripts --access public  --tag $(echo "develop-${{ steps.job_context.outputs.version }}-rc" | sed 's/[.]//g')
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

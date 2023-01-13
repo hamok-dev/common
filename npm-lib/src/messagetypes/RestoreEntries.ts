@@ -8,7 +8,7 @@ export class RestoreEntriesRequest<K, V> {
         sourceEndpointId?: string
     ) {
         this.requestId = requetId;
-        this.entries = entries;;
+        this.entries = entries;
         this.sourceEndpointId = sourceEndpointId;
     }
 
