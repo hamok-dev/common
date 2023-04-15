@@ -24,7 +24,7 @@ describe("PubSub", () => {
         const actual = codec.decode(message) as AddSubscriptionRequest;
         
         expect(message.sourceId).toBe(expected.sourceEndpointId);
-        expect(message.storageId).toBe(expected.event);
+        expect(message.raftLeaderId).toBe(expected.event);
         expect(message.requestId).toBe(expected.requestId);
 
         expect(expected.requestId).toBe(actual.requestId);

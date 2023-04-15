@@ -4,7 +4,7 @@ export { Message,
 } from "./Models";
 export { Codec, createCodec, Encoder, Decoder } from "./codecs/Codec";
 export { FacadedCodec } from "./codecs/FacadedCodec";
-export { createLogger, setLogLevel } from "./logger";
+export { createLogger, setLogLevel, LogLevel } from "./logger";
 export * as Collections from "./Collections";
 
 export { MessageProcessor } from "./MessageProcessor";
