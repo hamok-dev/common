@@ -1,6 +1,6 @@
 {
   "name": "@hamok-dev/common",
-  "version": "1.0.0-dev",
+  "version": "1.0.0",
   "description": "Library for hamok describe communication schema for typescript implementation",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
